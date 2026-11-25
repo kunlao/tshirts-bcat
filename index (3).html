@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Christmas Personalized Tee</title>
+<meta name="description" content="Forget the Ugly Christmas Sweater... Show Off Your Funniest Face!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Christmas Personalized Tee">
+<meta property="og:description" content="Forget the Ugly Christmas Sweater... Show Off Your Funniest Face!">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f1efe9;--card:#fffdf8;--tx:#1b2430;--mut:#657080;--ac:#1f5eff;--acx:#fff;--bd:#d9d5ca;--stage:#e4e0d4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111821;--card:#1a2330;--tx:#eef1f5;--mut:#9aa6b6;--ac:#6c92ff;--acx:#0b1220;--bd:#2c3849;--stage:#202b3a}}
+:root[data-theme="dark"]{--bg:#111821;--card:#1a2330;--tx:#eef1f5;--mut:#9aa6b6;--ac:#6c92ff;--acx:#0b1220;--bd:#2c3849;--stage:#202b3a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.5 "DM Sans",system-ui,sans-serif}
+main{max-width:520px;margin:0 auto;padding:16px 16px 40px}
+h1{font:800 30px/1.05 "Bricolage Grotesque",system-ui,sans-serif;margin:8px 0 4px;letter-spacing:-.02em}
+.sub{color:var(--mut);margin:0 0 16px}
+.stage{position:relative;aspect-ratio:1/1;background:#fff;border-radius:20px;overflow:hidden;touch-action:none;border:1px solid var(--bd)}
+.print{position:absolute;left:10%;top:10%;width:80%;height:80%;overflow:hidden;border:1.5px dashed rgba(128,128,128,.6);border-radius:4px}
+.print img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:none;cursor:grab;user-select:none;-webkit-user-drag:none;touch-action:none}
+.empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:13px;color:#9a9a9a;padding:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-top:14px}
+h2{font:700 17px/1.2 "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 10px}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:14px;font:700 16px "DM Sans",sans-serif;background:var(--ac);color:var(--acx);cursor:pointer;text-align:center}
+.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--bd);margin-top:8px}
+.btn:disabled{opacity:.6;cursor:default}
+a.btn{text-decoration:none}
+.btn[hidden]{display:none}
+#pick{margin:0;cursor:pointer}
+.up{position:relative}
+.up input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:2;font-size:0}
+.btn:focus-visible,.sw:focus-visible,.sz:focus-visible,input:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.sw{width:40px;height:40px;border-radius:50%;border:2px solid var(--bd);cursor:pointer;padding:0}
+.sw[aria-pressed="true"]{outline:3px solid var(--ac);outline-offset:2px}
+.sz{min-width:48px;padding:10px 12px;border-radius:10px;border:1px solid var(--bd);background:transparent;color:var(--tx);font:500 15px "DM Sans",sans-serif;cursor:pointer}
+.sz[aria-pressed="true"]{background:var(--ac);color:var(--acx);border-color:var(--ac)}
+label{display:block;font-weight:500;margin:12px 0 6px}
+input[type=range]{width:100%;accent-color:var(--ac)}
+input[type=text],input[type=number]{width:100%;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:400 16px "DM Sans",sans-serif}
+.item{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--bd)}
+.item img{width:56px;height:56px;border-radius:8px;object-fit:cover;border:1px solid var(--bd)}
+.item .t{flex:1;font-size:15px}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:12px 0}
+.tot b{font:800 28px "Bricolage Grotesque",sans-serif}
+.note{color:var(--mut);font-size:14px;margin:8px 0 0}
+#msg{min-height:22px;color:var(--ac);font-weight:500;margin-top:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>Christmas Personalized Tee</h1>
+<p class="sub">Forget the Ugly Christmas Sweater... Show Off Your Funniest Face!</p>
+
+<div class="stage" id="stage">
+  <div class="print" id="print">
+    <div class="empty" id="empty">Your image will appear here</div>
+    <img id="art" alt="Your design" hidden>
+  </div>
+</div>
+
+<div style="margin-top:10px">
+  <label for="tnote" style="margin-top:0">Comments for this image (optional)</label>
+  <textarea id="tnote" rows="2" maxlength="300" placeholder="E.g. make the face bigger, add the text 'Merry Christmas', remove the background" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:400 16px 'DM Sans',sans-serif;resize:vertical"></textarea>
+</div>
+
+<div class="card">
+  <h2>1. Your image</h2>
+  <div class="up"><input type="file" id="file" accept="image/*" aria-label="Upload a photo or image"><div class="btn" id="pick">Upload a photo or image</div></div>
+  <div id="ctl" hidden>
+    <label for="scale">Image size</label>
+    <input type="range" id="scale" min="20" max="200" value="90">
+    <p class="note">Drag the image to move it inside the box.</p>
+    <button class="btn ghost" id="reset" type="button">Center image</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>2. Color and size</h2>
+  <div class="row" id="colors"></div>
+  <div class="row" id="sizes" style="margin-top:14px"></div>
+  <label for="qty">Quantity for this tee</label>
+  <input type="number" id="qty" min="1" max="99" value="1" inputmode="numeric">
+  <button class="btn" id="add" type="button" style="margin-top:14px">Add to order</button>
+  <p class="note">For another tee with a different image, size or color, upload it and add it again.</p>
+</div>
+
+<div class="card">
+  <h2>3. Your order</h2>
+  <div id="cart"></div>
+  <label for="name">Name</label>
+  <input type="text" id="name" autocomplete="name" placeholder="Your name">
+  <label for="phone">Phone or contact</label>
+  <input type="text" id="phone" autocomplete="tel" placeholder="So we can coordinate delivery">
+  <label for="addr">Delivery address: street and number</label>
+  <input type="text" id="addr" autocomplete="address-line1" placeholder="E.g. 123 Main St">
+  <label for="addr2">Apartment, suite or unit (optional)</label>
+  <input type="text" id="addr2" autocomplete="address-line2" placeholder="E.g. Apt 4B">
+  <label for="city">City</label>
+  <input type="text" id="city" autocomplete="address-level2">
+  <div style="display:flex;gap:10px">
+    <div style="flex:1"><label for="state">State</label><input type="text" id="state" autocomplete="address-level1"></div>
+    <div style="flex:1"><label for="zip">ZIP code</label><input type="text" id="zip" autocomplete="postal-code" inputmode="numeric"></div>
+  </div>
+  <label for="notes">Comments or instructions (optional)</label>
+  <textarea id="notes" rows="3" maxlength="600" placeholder="E.g. text color, date you need it, design changes" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:400 16px 'DM Sans',sans-serif;resize:vertical"></textarea>
+  <div class="tot"><span id="detail" class="note"></span><b id="total">$0.00</b></div>
+  <a class="btn" id="pay" href="#" target="_blank" rel="noopener" hidden>1. Pay now</a>
+  <div id="paidbox" style="margin-top:12px">
+    <label for="payid">PayPal confirmation number</label>
+    <input type="text" id="payid" autocomplete="off" placeholder="Find it on your PayPal receipt after paying">
+    <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" id="paidchk" style="width:20px;height:20px;margin-top:3px"> <span>I paid the full total of my order</span></label>
+  </div>
+  <button class="btn" id="send" type="button" style="margin-top:8px" disabled>2. Send my order with my images</button>
+  <p class="note" id="gatenote">To send: tap Pay, pay, enter your confirmation number and check the box.</p>
+  <button class="btn ghost" id="share" type="button" hidden>Send by Messenger with my images</button>
+  <a class="btn ghost" id="msgr" href="#" target="_blank" rel="noopener" hidden>Questions? Message us on Messenger</a>
+  <div id="msg" role="status"></div>
+  <p class="note">Pay the total, then tap "Send my order": your details and all your images reach the store together.</p>
+</div>
+</main>
+
+
+
+<form name="pedidos" method="POST" action="/" enctype="multipart/form-data" data-netlify="true" hidden>
+<input name="nombre"><input name="contacto"><input name="entrega"><input name="cantidad_total"><input name="total"><textarea name="pedido"></textarea><textarea name="comentarios"></textarea><input name="paypal_confirmacion"><input name="pago_confirmado_por_cliente">
+<input type="file" name="imagen_1"><input type="file" name="vista_1">
+<input type="file" name="imagen_2"><input type="file" name="vista_2">
+<input type="file" name="imagen_3"><input type="file" name="vista_3">
+<input type="file" name="imagen_4"><input type="file" name="vista_4">
+<input type="file" name="imagen_5"><input type="file" name="vista_5">
+<input type="file" name="imagen_6"><input type="file" name="vista_6">
+<input type="file" name="imagen_7"><input type="file" name="vista_7">
+<input type="file" name="imagen_8"><input type="file" name="vista_8">
+</form>
+
+<script>
+(function(){
+  var PRICE=25, DISC=[[12,0.8],[6,0.9]], MAX=8;
+  /* Datos de la tienda: escribe solo tu usuario, sin https ni @ */
+  var STORE={paypal:"bcatschool",cashapp:"",payLink:"https://www.paypal.com/ncp/payment/PLB-8JHMQ9PD49V6",messenger:"bilingualinstruction",whatsapp:""};
+  var COLORS=[["White","#ffffff","Blanco"],["Black","#1c1c1f","Negro"],["Navy","#1f3a68","Azul marino"],["Red","#c8332b","Rojo"],["Green","#2f7a4d","Verde"],["Gray","#9aa0a8","Gris"],["Yellow","#f0c53a","Amarillo"]];
+  var SIZES=["XS","S","M","L","XL","XXL"];
+  var st={color:0,size:2,scale:90,x:0,y:0,has:false,file:null};
+  var cart=[];
+  var $=function(id){return document.getElementById(id)};
+  var art=$("art"),stage=$("stage"),pr=$("print");
+
+  COLORS.forEach(function(c,i){
+    var b=document.createElement("button");
+    b.type="button";b.className="sw";b.style.background=c[1];b.title=c[0];
+    b.setAttribute("aria-label",c[0]);
+    b.onclick=function(){st.color=i;render()};
+    $("colors").appendChild(b);
+  });
+  SIZES.forEach(function(s,i){
+    var b=document.createElement("button");
+    b.type="button";b.className="sz";b.textContent=s;
+    b.onclick=function(){st.size=i;render()};
+    $("sizes").appendChild(b);
+  });
+
+  function total(){
+    var q=0,f=1;
+    cart.forEach(function(it){q+=it.qty});
+    for(var i=0;i<DISC.length;i++){if(q>=DISC[i][0]){f=DISC[i][1];break}}
+    return {q:q,f:f,t:Math.round(q*PRICE*f*100)/100};
+  }
+  function links(t){
+    var p=$("pay"),m=$("msgr"),u="",mu="";
+    if(STORE.paypal)u="https://paypal.me/"+STORE.paypal+"/"+t.toFixed(2);
+    else if(STORE.cashapp)u="https://cash.app/$"+STORE.cashapp+"/"+t.toFixed(2);
+    else if(STORE.payLink)u=STORE.payLink;
+    p.hidden=!u;if(u)p.href=u;
+    p.textContent=(STORE.paypal||STORE.cashapp)?"1. Pay $"+t.toFixed(2):"1. Pay now";
+    if(STORE.messenger)mu="https://m.me/"+STORE.messenger;
+    else if(STORE.whatsapp){mu="https://wa.me/"+STORE.whatsapp;m.textContent="Questions? Message us on WhatsApp"}
+    m.hidden=!mu;if(mu)m.href=mu;
+  }
+  function layout(){
+    art.style.width=(pr.clientWidth*st.scale/100)+"px";
+    art.style.left="calc(50% + "+st.x+"px)";
+    art.style.top="calc(50% + "+st.y+"px)";
+  }
+  function render(){
+    stage.style.background=COLORS[st.color][1];
+    Array.prototype.forEach.call($("colors").children,function(b,i){b.setAttribute("aria-pressed",i===st.color)});
+    Array.prototype.forEach.call($("sizes").children,function(b,i){b.setAttribute("aria-pressed",i===st.size)});
+    layout();
+  }
+  function renderCart(){
+    var box=$("cart");box.textContent="";
+    if(!cart.length){
+      var p=document.createElement("p");p.className="note";p.style.marginTop="0";
+      p.textContent="You haven't added any tees yet.";box.appendChild(p);
+    }
+    cart.forEach(function(it,i){
+      var row=document.createElement("div");row.className="item";
+      var im=document.createElement("img");im.src=it.thumb;im.alt="";
+      var t=document.createElement("div");t.className="t";
+      t.textContent=(i+1)+". "+COLORS[it.color][0]+" · size "+SIZES[it.size]+" · qty "+it.qty;
+      if(it.note){var nd=document.createElement("div");nd.className="note";nd.style.margin="4px 0 0";nd.textContent="Note: "+it.note;t.appendChild(nd)}
+      var b=document.createElement("button");b.type="button";b.className="sz";b.textContent="Remove";
+      b.onclick=function(){cart.splice(i,1);renderCart()};
+      row.appendChild(im);row.appendChild(t);row.appendChild(b);box.appendChild(row);
+    });
+    var r=total();
+    $("total").textContent="$"+r.t.toFixed(2);
+    $("detail").textContent=r.q+" tee(s) × $"+PRICE+(r.f<1?" (discount applied)":"");
+    links(r.t);
+    if(typeof gate==="function")gate();
+  }
+  function resetEditor(){
+    art.hidden=true;art.removeAttribute("src");$("empty").hidden=false;$("ctl").hidden=true;
+    $("file").value="";$("pick").textContent="Upload a photo or image";
+    $("tnote").value="";st.has=false;st.file=null;st.x=0;st.y=0;st.scale=90;$("scale").value=90;$("qty").value=1;
+  }
+  function compose(S){
+    var c=document.createElement("canvas"),k=S/stage.clientWidth;
+    c.width=S;c.height=S;
+    var g=c.getContext("2d");
+    g.fillStyle=COLORS[st.color][1];g.fillRect(0,0,S,S);
+    g.beginPath();g.rect(S*0.1,S*0.1,S*0.8,S*0.8);g.clip();
+    var w=pr.clientWidth*st.scale/100*k,h=w*art.naturalHeight/art.naturalWidth;
+    g.drawImage(art,S/2+st.x*k-w/2,S/2+st.y*k-h/2,w,h);
+    return c;
+  }
+  function resizeOrig(file,cb){
+    if(file.size<=900*1024){cb(file);return}
+    var im=new Image();
+    im.onload=function(){
+      var m=Math.min(1,2000/Math.max(im.naturalWidth,im.naturalHeight)),c=document.createElement("canvas");
+      c.width=Math.round(im.naturalWidth*m);c.height=Math.round(im.naturalHeight*m);
+      c.getContext("2d").drawImage(im,0,0,c.width,c.height);
+      var png=file.type==="image/png";
+      c.toBlob(function(b){cb(b||file)},png?"image/png":"image/jpeg",0.85);
+    };
+    im.onerror=function(){cb(file)};
+    im.src=art.src;
+  }
+
+  $("file").onchange=function(e){
+    var f=e.target.files&&e.target.files[0];
+    if(!f)return;
+    if(f.size>25*1024*1024){$("msg").textContent="The image is larger than 25 MB. Please choose a smaller one.";return}
+    st.file=f;
+    var rd=new FileReader();
+    rd.onload=function(){
+      art.onload=function(){layout()};
+      art.src=rd.result;art.hidden=false;
+      $("empty").hidden=true;$("ctl").hidden=false;$("pick").textContent="Change image";
+      st.has=true;st.x=0;st.y=0;st.scale=90;$("scale").value=90;$("msg").textContent="";
+      render();
+    };
+    rd.readAsDataURL(f);
+  };
+  $("scale").oninput=function(e){st.scale=+e.target.value;layout()};
+  $("reset").onclick=function(){st.x=0;st.y=0;layout()};
+  window.addEventListener("resize",layout);
+
+  var drag=null;
+  art.addEventListener("pointerdown",function(e){
+    drag={px:e.clientX,py:e.clientY,x:st.x,y:st.y};
+    art.setPointerCapture(e.pointerId);art.style.cursor="grabbing";
+  });
+  art.addEventListener("pointermove",function(e){
+    if(!drag)return;
+    st.x=drag.x+(e.clientX-drag.px);st.y=drag.y+(e.clientY-drag.py);layout();
+  });
+  var end=function(){drag=null;art.style.cursor="grab"};
+  art.addEventListener("pointerup",end);
+  art.addEventListener("pointercancel",end);
+
+  $("add").onclick=function(){
+    var msg=$("msg"),btn=$("add");
+    if(!st.has){msg.textContent="Please upload an image first.";return}
+    if(cart.length>=MAX){msg.textContent="Maximum "+MAX+" different tees per order. Place another order for more.";return}
+    var q=Math.min(99,Math.max(1,parseInt($("qty").value)||1));
+    btn.disabled=true;msg.textContent="Adding...";
+    var c=compose(700),th=compose(140).toDataURL("image/jpeg",0.7),file=st.file,color=st.color,size=st.size,note=$("tnote").value.trim();
+    c.toBlob(function(pb){
+      resizeOrig(file,function(ob){
+        cart.push({file:ob,fname:file.name||"imagen.jpg",prev:pb,thumb:th,color:color,size:size,qty:q,note:note});
+        resetEditor();renderCart();render();
+        btn.disabled=false;
+        msg.textContent="T-shirt agregada. Puedes agregar otra o enviar tu pedido.";
+      });
+    },"image/jpeg",0.85);
+  };
+
+  var paidTotal=null;
+  function payOK(){return /^[A-Za-z0-9-]{10,}$/.test($("payid").value.replace(/\s+/g,""))}
+  function gate(){
+    var r=total(),ok=cart.length>0&&paidTotal!==null&&paidTotal===r.t&&payOK()&&$("paidchk").checked;
+    $("send").disabled=!ok;
+    var n=$("gatenote");
+    if(paidTotal!==null&&paidTotal!==r.t)n.textContent="The total changed. Tap Pay again with the new total.";
+    else n.textContent="To send: tap Pay, pay, enter your confirmation number and check the box.";
+  }
+  $("payid").addEventListener("input",gate);
+  $("paidchk").addEventListener("change",gate);
+  $("pay").addEventListener("click",function(){if(cart.length){paidTotal=total().t;gate()}});
+  $("pay").onclick=function(e){
+    if(!cart.length){e.preventDefault();$("msg").textContent="Add at least one tee to your order."}
+  };
+
+  $("send").onclick=function(){
+    var msg=$("msg"),btn=$("send");
+    if(!cart.length){msg.textContent="Add at least one tee to your order.";return}
+    if(!$("name").value.trim()||!$("phone").value.trim()){msg.textContent="Enter your name and a phone number or contact.";return}
+    if(!$("addr").value.trim()||!$("city").value.trim()||!$("state").value.trim()||!$("zip").value.trim()){msg.textContent="Complete your address: street, city, state and ZIP code.";return}
+    if(paidTotal===null||paidTotal!==total().t){msg.textContent="First tap Pay with your order total.";return}
+    if(!payOK()){msg.textContent="Enter the PayPal confirmation number from your receipt.";return}
+    if(!$("paidchk").checked){msg.textContent="Check the box to confirm you paid.";return}
+    btn.disabled=true;msg.textContent="Enviando tu pedido...";
+    var r=total(),fd=new FormData(),lines=[];
+    var dir=$("addr").value.trim()+($("addr2").value.trim()?", "+$("addr2").value.trim():"")+", "+$("city").value.trim()+", "+$("state").value.trim()+" "+$("zip").value.trim();
+    fd.append("form-name","pedidos");
+    fd.append("nombre",$("name").value.trim());
+    fd.append("contacto",$("phone").value.trim());
+    fd.append("entrega",dir);
+    fd.append("cantidad_total",r.q);
+    fd.append("total","$"+r.t.toFixed(2));
+    cart.forEach(function(it,i){
+      var n=i+1;
+      lines.push(n+". "+COLORS[it.color][2]+" ("+COLORS[it.color][0]+"), talla "+SIZES[it.size]+", cantidad "+it.qty+" (archivo imagen_"+n+")"+(it.note?" — NOTA: "+it.note:""));
+      fd.append("imagen_"+n,it.file,it.fname);
+      fd.append("vista_"+n,it.prev,"vista_"+n+".jpg");
+    });
+    fd.append("pedido",lines.join("\n"));
+    fd.append("comentarios",$("notes").value.trim());
+    fd.append("paypal_confirmacion",$("payid").value.trim());
+    fd.append("pago_confirmado_por_cliente","Sí, por $"+paidTotal.toFixed(2));
+    fetch("/",{method:"POST",body:fd}).then(function(res){
+      if(!res.ok)throw new Error("HTTP "+res.status);
+      msg.textContent="Order sent! We will contact you soon. Thank you for your purchase.";
+      btn.textContent="Order sent";
+    }).catch(function(err){
+      msg.textContent="We could not send it ("+(err&&err.message?err.message:"no connection")+"). Tap the button below to send it by Messenger with your images.";
+      $("share").hidden=false;
+      btn.disabled=false;
+    });
+  };
+
+  $("share").onclick=function(){
+    var msg=$("msg");
+    if(!cart.length){msg.textContent="Add at least one tee to your order.";return}
+    var r=total(),lines=[];
+    var dir=$("addr").value.trim()+($("addr2").value.trim()?", "+$("addr2").value.trim():"")+", "+$("city").value.trim()+", "+$("state").value.trim()+" "+$("zip").value.trim();
+    var files=[];
+    cart.forEach(function(it,i){
+      var n=i+1,ext=(it.file.type==="image/png")?"png":"jpg";
+      lines.push(n+". "+COLORS[it.color][0]+", size "+SIZES[it.size]+", qty "+it.qty+" (image "+n+")"+(it.note?" - Note: "+it.note:""));
+      try{files.push(new File([it.file],"imagen_"+n+"."+ext,{type:it.file.type||"image/jpeg"}))}catch(e){}
+    });
+    var txt="Christmas Personalized Tee order\nName: "+$("name").value.trim()+"\nContact: "+$("phone").value.trim()+"\nDelivery: "+dir+"\n\n"+lines.join("\n")+"\n\nTotal tees: "+r.q+"\nTotal: $"+r.t.toFixed(2);
+    var copyOpen=function(){
+      var done=function(){
+        msg.textContent="Summary copied. In Messenger, paste the message and attach your images.";
+        if(STORE.messenger)window.open("https://m.me/"+STORE.messenger,"_blank");
+      };
+      var t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();
+      try{document.execCommand("copy");done()}catch(e){msg.textContent="Could not copy. Please type your order by hand in Messenger."}
+      document.body.removeChild(t);
+    };
+    if(navigator.share&&navigator.canShare&&files.length&&navigator.canShare({files:files})){
+      navigator.share({files:files,text:txt,title:"Christmas Personalized Tee order"}).then(function(){
+        msg.textContent="Choose Messenger and send the message to the store page."
+      }).catch(function(e){if(!e||e.name!=="AbortError")copyOpen()});
+    }else{copyOpen()}
+  };
+
+  render();renderCart();
+})();
+</script>
+</body>
+</html>
