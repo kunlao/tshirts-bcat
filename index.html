@@ -115,7 +115,7 @@ input[type=text],input[type=number]{width:100%;padding:12px;border-radius:10px;b
 
 
 
-<form name="pedidos" data-netlify="true" hidden>
+<form name="pedidos" method="POST" action="/" enctype="multipart/form-data" data-netlify="true" hidden>
 <input name="nombre"><input name="contacto"><input name="entrega"><input name="cantidad_total"><input name="total"><textarea name="pedido"></textarea>
 <input type="file" name="imagen_1"><input type="file" name="vista_1">
 <input type="file" name="imagen_2"><input type="file" name="vista_2">
@@ -304,7 +304,7 @@ input[type=text],input[type=number]{width:100%;padding:12px;border-radius:10px;b
       fd.append("vista_"+n,it.prev,"vista_"+n+".jpg");
     });
     fd.append("pedido",lines.join("\n"));
-    fetch(window.location.pathname||"/",{method:"POST",body:fd}).then(function(res){
+    fetch("/",{method:"POST",body:fd}).then(function(res){
       if(!res.ok)throw new Error("HTTP "+res.status);
       msg.textContent="¡Pedido enviado! Te contactaremos pronto. Si aún no pagaste, toca Pagar.";
       btn.textContent="Pedido enviado";
